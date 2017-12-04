@@ -5,8 +5,6 @@
  */
 package ut.webservices.service;
 
-import com.google.gson.Gson;
-import java.util.Enumeration;
 import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 import org.json.JSONArray;

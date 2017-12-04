@@ -2,4 +2,4 @@ build
 .gradle
 .nb-gradle
 .nb-gradle-properties
-src/main/resources/services
+src/main/resources/services/*.properties
