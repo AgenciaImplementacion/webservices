@@ -12,7 +12,7 @@ fi
 if [ "$JENKINS_DEPLOY" == "yes" ]
 then
   # Opcional, configura la aplicación descifrando secretos.
-  rsaconfigcipher -P $JENKINS_SECRET_KEY src/main/resources/services/cartagena.properties.rsa
+  rsaconfigcipher -P $JENKINS_SECRET_KEY src/main/resources/services/*.rsa
 fi
 
 if gradle build ; then
