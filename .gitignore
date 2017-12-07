@@ -3,3 +3,4 @@ build
 .nb-gradle
 .nb-gradle-properties
 src/main/resources/services/*.properties
+*.exe
