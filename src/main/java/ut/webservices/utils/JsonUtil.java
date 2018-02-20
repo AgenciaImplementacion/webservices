@@ -8,8 +8,10 @@ package ut.webservices.utils;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.postgresql.util.PGobject;
 
 /**
  * Clase util para convertir objetos a json
@@ -61,6 +63,24 @@ public class JsonUtil {
                         obj.put(column_name, rs.getDate(column_name));
                     } else if (rsmd.getColumnType(i) == java.sql.Types.TIMESTAMP) {
                         obj.put(column_name, rs.getTimestamp(column_name));
+                    } else if (rsmd.getColumnType(i) == java.sql.Types.OTHER) {
+                        Object o = rs.getObject(column_name);
+                        if (o instanceof PGobject) {
+                            if (((PGobject) o).getType().equals("json")) {
+                                String jsonString = ((PGobject) o).getValue();
+                                if (jsonString.startsWith("[")) {
+                                    JSONArray j = new JSONArray(jsonString);
+                                    obj.put(column_name, j);
+                                } else if (jsonString.startsWith("{")) {
+                                    JSONObject j = new JSONObject(jsonString);
+                                    obj.put(column_name, j);
+                                }
+                            }
+                        } else {
+                            obj.put(column_name, rs.getObject(column_name));
+                        }
+                    } else if (rsmd.getColumnType(i) == java.sql.Types.JAVA_OBJECT) {
+                        obj.put(column_name, rs.getObject(column_name));
                     } else {
                         obj.put(column_name, rs.getObject(column_name));
                     }
