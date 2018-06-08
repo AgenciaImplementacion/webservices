@@ -8,7 +8,6 @@ package ut.webservices.utils;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.postgresql.util.PGobject;

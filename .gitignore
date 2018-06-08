@@ -4,3 +4,12 @@ build
 .nb-gradle-properties
 src/main/resources/services/*.properties
 *.exe
+
+# STS files
+/.classpath
+/.project
+/.settings/
+/bin/
+
+# No private key
+/keys/rsakey.pem
