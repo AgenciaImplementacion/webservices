@@ -19,6 +19,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE")
     compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
     compile group: 'org.json', name: 'json', version: '20171018'
-    compile group: 'org.apache.tika', name: 'tika-parsers', version: '1.18'
+    compile group: 'com.github.albfernandez', name: 'juniversalchardet', version: '2.1.0'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
