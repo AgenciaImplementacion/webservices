@@ -32,6 +32,26 @@ public class WSController {
         d.disconnect();
         return l.toString();
     }
+    
+    @RequestMapping(value = "ws/{name}", method = RequestMethod.GET, produces = "application/json")
+    public String get(HttpServletRequest request, @PathVariable("name") String name) {
+        Properties conf = ConfigUtil.getConfig(name);
+        Driver d = new Postgres();
+        d.connect(conf);
+        JSONArray l = d.query(conf, request);
+        d.disconnect();
+        return l.toString();
+    }
+    
+    @RequestMapping(value = "ws/{name}/{index}", method = RequestMethod.GET, produces = "application/json")
+    public String getAt(HttpServletRequest request, @PathVariable("name") String name,@PathVariable("index") Integer index) {
+        Properties conf = ConfigUtil.getConfig(name);
+        Driver d = new Postgres();
+        d.connect(conf);
+        JSONArray l = d.query(conf, request);
+        d.disconnect();
+        return l.getJSONObject(index).toString();
+    }
 
     @RequestMapping(value = "ws", method = RequestMethod.GET)
     public String get() {
