@@ -66,7 +66,8 @@ public class ConfigUtil {
         	//System.out.println("charsetName: " + charsetName);
         	
         	// https://stackoverflow.com/questions/30755014/reading-from-property-file-containing-utf-8-character
-        	InputStreamReader isr = new InputStreamReader(stream, Charset.forName(charsetName));
+                
+        	InputStreamReader isr = new InputStreamReader(stream, charsetName != null ? Charset.forName(charsetName) : Charset.forName("UTF-8"));
     		return ConfigUtil.readConfigFile(isr);
     		//return ConfigUtil.readConfigFile(stream);
         } catch (IOException e) {
