@@ -27,6 +27,6 @@ fi
 
 if [ "$IGAC_DEPLOY" == "yes" ]
 then
-  scp build/libs/webservices.jar build.sh web:/opt/webservices/webservices.jar
+  scp build/libs/webservices.jar web:/opt/webservices
 fi
 
