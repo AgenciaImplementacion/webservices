@@ -9,6 +9,10 @@ if [ -z "$JENKINS_DEPLOY" ]; then
   JENKINS_DEPLOY='no'
 fi
 
+if [ -z "$IGAC_DEPLOY" ]; then
+  IGAC_DEPLOY='no'
+fi
+
 if [ "$JENKINS_DEPLOY" == "yes" ]
 then
   # Opcional, configura la aplicación descifrando secretos.
@@ -19,5 +23,11 @@ if gradle build ; then
     echo -e "\n${RED}${BOLD}Artifact in ./build/libs/webservices.jar${ENDC}" 
 else
     echo -e "\n${RED}${BOLD}Error Gradle Build${ENDC}"
+fi
+
+if [ "$IGAC_DEPLOY" == "yes" ]
+then
+  scp build/libs/webservices.jar web:/opt/webservices
+  ssh web '/opt/webservices/build.sh'
 fi
 
